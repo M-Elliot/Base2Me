@@ -1,16 +1,21 @@
 ﻿using System;
 using Base2Me.Utils;
-
+using Base2Me.Features;
 namespace Base2Me
 {
-    class Program
+    public class Program
     {
-        Utils.SDKClass SDK = null;
+        public BunnyHop BunnyHop;
+
          static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Utils.SDKClass SDK = new Utils.SDKClass("csgo");
+            new Program().InitialiseThreads();
             Console.ReadLine();
+        }
+        void InitialiseThreads()
+        {
+            BunnyHop = new BunnyHop();
         }
 
     }

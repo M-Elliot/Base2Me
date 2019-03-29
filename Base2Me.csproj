@@ -1,12 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+ 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Platforms>AnyCPU;x86</Platforms>
+    <StartupObject>Base2Me.Program</StartupObject>
+    <ApplicationIcon />
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Utils\SDK.cs~RF957625.TMP" />
-  </ItemGroup>
 
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Utils\SDK.cs~RF151f6cc.TMP" />
+    <None Remove="Utils\SDK.cs~RF1d45520.TMP" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Utils\Structures\" />
+  </ItemGroup>
+  
 </Project>

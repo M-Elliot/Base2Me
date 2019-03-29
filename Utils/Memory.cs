@@ -8,14 +8,17 @@ using System.Threading;
 
 namespace Base2Me.Utils
 {
-    class MemoryClass
+    public class MemoryManager
     {
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern object ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out, MarshalAs(UnmanagedType.AsAny)] object lpBuffer, int dwSize, IntPtr lpNumberOfBytesRead);
 
         public Process GameProcess;
+        //Move these to Offsets maybe????
+        public ProcessModule ClientPanoramaModule;
+        public ProcessModule EngineModule;
 
-        public MemoryClass(string ProcessName)
+        public MemoryManager(string ProcessName)
         {
             while(true)
             {
@@ -27,6 +30,24 @@ namespace Base2Me.Utils
                     break;
                 }
                 Thread.Sleep(100);
+            }
+
+            Console.WriteLine("Identifying Module Bases...");
+
+            foreach(ProcessModule Module in GameProcess.Modules)
+            {
+                switch (Module.ModuleName)
+                {
+                    case "client_panorama.dll":
+                        Console.WriteLine("client_panorama.dll located");
+                        ClientPanoramaModule = Module;
+                        break;
+                    case "engine.dll":
+                        Console.WriteLine("engine.dll located");
+                        EngineModule = Module;
+                        break;
+                }
+
             }
         }
 
