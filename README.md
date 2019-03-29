@@ -12,7 +12,7 @@
 
 <ul>
 	<li>
-		C# .NetCore 2.2.0 (Linux support in the future?????<span class="ipsEmoji">😉</span>)
+		C# .NetCore 2.2.0 (Linux support in the future?????</span>)
 	</li>
 	<li>
 		Visual Studio
