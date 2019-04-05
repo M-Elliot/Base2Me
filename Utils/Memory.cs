@@ -11,7 +11,10 @@ namespace Base2Me.Utils
     public class MemoryManager
     {
         [DllImport("kernel32.dll", SetLastError = true)]
-        static extern object ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out, MarshalAs(UnmanagedType.AsAny)] object lpBuffer, int dwSize, IntPtr lpNumberOfBytesRead);
+        private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer, int dwSize, IntPtr lpNumberOfBytesRead);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] buffer, Int32 size, [Out] IntPtr lpNumberOfBytesWritten);
 
         public Process GameProcess;
         //Move these to Offsets maybe????
@@ -50,32 +53,37 @@ namespace Base2Me.Utils
 
             }
         }
-
-        private void ReadProcess(IntPtr Address, object ObjValue)
+        #region Read
+        public unsafe T ReadProcess<T>(IntPtr Address)
         {
-            IntPtr Crap = new IntPtr();
-            ReadProcessMemory(GameProcess.Handle, Address, ObjValue, Marshal.SizeOf(ObjValue), Crap);
-        }
+            byte[] ObjBuffer = new byte[Marshal.SizeOf<T>()];
+            ReadProcessMemory(GameProcess.Handle, Address, ObjBuffer, Marshal.SizeOf<T>(), IntPtr.Zero);
 
-        public int ReadInteger(IntPtr Address, int Value)
+            fixed (byte* byteBuffer = ObjBuffer)
+            {
+               return (T)Marshal.PtrToStructure(new IntPtr(byteBuffer), typeof(T));
+            }
+        }
+        //public T ReadObj<T>(IntPtr Address)
+        //{
+        //    return ReadProcess<T>(Address);
+        //}
+        #endregion
+
+        #region Write
+        public unsafe void WriteProcess<T>(IntPtr Address, T ObjValue)
         {
-            ReadProcess(Address, Value);
-            return Value;
+            IntPtr BufferPtr = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
+            byte[] ByteObject = new byte[Marshal.SizeOf<T>()];
+            Marshal.StructureToPtr(ObjValue, BufferPtr, false);
+            Marshal.Copy(BufferPtr, ByteObject, 0, Marshal.SizeOf<T>());
+            Marshal.FreeHGlobal(BufferPtr);
+            WriteProcessMemory(GameProcess.Handle, Address, ByteObject, ByteObject.Length, IntPtr.Zero);
         }
-
-        public T ReadObject<T>(IntPtr Address, T ObjValue)
+        public void WriteNormal(IntPtr Address, Byte[] ObjValue)
         {
-            ReadProcess(Address, ObjValue);
-            return ObjValue;
+            WriteProcessMemory(GameProcess.Handle, Address, ObjValue, ObjValue.Length, IntPtr.Zero);
         }
-
-        public Vector3 ReadVector3(IntPtr Address, Vector3 Vector)
-        {
-            ReadProcess(Address, Vector);
-            return Vector;
-        }
-
-
-
+        #endregion
     }
 }

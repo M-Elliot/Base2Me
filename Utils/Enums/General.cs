@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Base2Me.Utils.Enums
 {
+    [Flags]
         public enum GeneralBitFlags
         {
             None,
