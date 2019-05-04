@@ -1,31 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Base2Me.Utils
+﻿namespace Base2Me.Utils
 {
     public class Offsets
     {
         //change to JSON...
         public int dwClientState;
+
         public int dwEntityList;
         public int dwGameRulesProxy;
         public int dwGlowObjectManager;
         public int dwLocalPlayer;
-        
+
         public int m_fFlags;
 
         public int dwForceJump;
+
         public Offsets()
         {
             dwClientState = 0x58BCFC;
-            dwEntityList = 0x4CE34DC;
-            dwGameRulesProxy = 0x51F8CB4;
-            dwGlowObjectManager = 0x5223730;
-            dwLocalPlayer = 0xCD2764;
+            dwEntityList = 0x4CFD35C;
+            dwGameRulesProxy = 0x5212C0C;
+            dwGlowObjectManager = 0x523D718;
+            dwLocalPlayer = 0xCEB95C;
             m_fFlags = 0x104;
 
-            dwForceJump = 0x5186978;
+            dwForceJump = 0x51A08C4;
+            // 04/05/19 offset date
         }
     }
 }

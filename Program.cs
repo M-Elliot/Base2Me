@@ -1,22 +1,24 @@
-﻿using System;
-using Base2Me.Utils;
-using Base2Me.Features;
+﻿using Base2Me.Features;
+using System;
+
 namespace Base2Me
 {
     public class Program
     {
         public BunnyHop BunnyHop;
 
-         static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Open Source - Base2Me!");
             new Program().InitialiseThreads();
+
+            //Hang until input, threads remain active.
             Console.ReadLine();
         }
-        void InitialiseThreads()
+
+        private void InitialiseThreads()
         {
             BunnyHop = new BunnyHop();
         }
-
     }
 }
