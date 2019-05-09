@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Base2Me.Utils.Enums
+namespace Base2Me.Utils.CSGO.Enums
 {
     [Flags]
     public enum GeneralBitFlags

@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Base2Me.Utils.Managers
+﻿namespace Base2Me.Utils.Managers
 {
-    class Features
+    //Might disregard this class
+    internal class Features
     {
-        void StartThread()
+        private void StartThread()
         {
-
         }
 
-        void CheckThread()
+        private void CheckThread()
         {
-
         }
 
-        void RestartThread()
+        private void RestartThread()
         {
-
         }
-
-
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Base2Me.Utils
+﻿namespace Base2Me.Utils.Managers
 {
     public class Offsets
     {

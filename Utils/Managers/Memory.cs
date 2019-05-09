@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace Base2Me.Utils
+namespace Base2Me.Utils.Managers
 {
     public class MemoryManager
     {
@@ -22,6 +22,7 @@ namespace Base2Me.Utils
 
         public MemoryManager(string ProcessName)
         {
+            Console.WriteLine("Waiting for csgo...");
             while (true)
             {
                 if (Process.GetProcessesByName(ProcessName).Length > 0)
@@ -79,7 +80,7 @@ namespace Base2Me.Utils
 
         #region Write
 
-            // I might change this
+        // I might change this
         public void WriteProcess<T>(IntPtr Address, T ObjValue)
         {
             IntPtr BufferPtr = Marshal.AllocHGlobal(Marshal.SizeOf<T>());

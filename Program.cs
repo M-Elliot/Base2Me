@@ -1,4 +1,7 @@
 ﻿using Base2Me.Features;
+using Base2Me.Utils;
+using Base2Me.Utils.Managers;
+
 using System;
 
 namespace Base2Me
@@ -9,15 +12,18 @@ namespace Base2Me
 
         private static void Main(string[] args)
         {
-            Console.WriteLine("Open Source - Base2Me!");
             new Program().InitialiseThreads();
-
             //Hang until input, threads remain active.
             Console.ReadLine();
         }
 
         private void InitialiseThreads()
         {
+            SDK.Settings = new Settings();
+            var ConMenu = new ConsoleMenu();
+
+            SDK.Offsets = new Offsets();
+            SDK.Memory = new MemoryManager("csgo");
             BunnyHop = new BunnyHop();
         }
     }

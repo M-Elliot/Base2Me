@@ -1,5 +1,6 @@
 ﻿using Base2Me.Utils;
-using Base2Me.Utils.Enums;
+using Base2Me.Utils.CSGO.Enums;
+
 using System;
 using System.Threading;
 
@@ -22,17 +23,16 @@ namespace Base2Me.Features
                 if (SDK.LocalPlayer != IntPtr.Zero)
                 {
                     int m_flag = SDK.Memory.ReadProcess<int>(IntPtr.Add(SDK.LocalPlayer, SDK.Offsets.m_fFlags));
-                    if (SDK.GetAsyncKeyState(ConsoleKey.Spacebar) < 0)
+                    if (SDK.GetAsyncKeyState(SDK.Settings.BunnyHopKey) < 0)
                     {
+                        //If we are on the ground,jump
                         if ((m_flag & (int)GeneralBitFlags.FL_ONGROUND) != 0)
                         {
-                        //Console.WriteLine("GROUND");
-                        SDK.Memory.WriteNormal(IntPtr.Add(SDK.Memory.ClientPanoramaModule.BaseAddress, SDK.Offsets.dwForceJump), BitConverter.GetBytes(5));              
+                            SDK.Memory.WriteNormal(IntPtr.Add(SDK.Memory.ClientPanoramaModule.BaseAddress, SDK.Offsets.dwForceJump), BitConverter.GetBytes(5));
                         }
                         else
                         {
-                        //Console.WriteLine("AIR");
-                        SDK.Memory.WriteNormal(IntPtr.Add(SDK.Memory.ClientPanoramaModule.BaseAddress, SDK.Offsets.dwForceJump), BitConverter.GetBytes(4));
+                            SDK.Memory.WriteNormal(IntPtr.Add(SDK.Memory.ClientPanoramaModule.BaseAddress, SDK.Offsets.dwForceJump), BitConverter.GetBytes(4));
                         }
                     }
                 }
