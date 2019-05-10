@@ -7,22 +7,26 @@ namespace Base2Me.Utils.Managers
 {
     public class MemoryManager
     {
+        #region DLLImports
+
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer, int dwSize, IntPtr lpNumberOfBytesRead);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool WriteProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] buffer, Int32 size, [Out] IntPtr lpNumberOfBytesWritten);
 
-        public Process GameProcess;
+        #endregion DLLImports
 
         //Move these to Offsets maybe????
         public ProcessModule ClientPanoramaModule;
 
         public ProcessModule EngineModule;
+        public Process GameProcess;
 
         public MemoryManager(string ProcessName)
         {
             Console.WriteLine("Waiting for csgo...");
+
             while (true)
             {
                 if (Process.GetProcessesByName(ProcessName).Length > 0)
@@ -71,14 +75,14 @@ namespace Base2Me.Utils.Managers
             }
         }
 
-        //public T ReadObj<T>(IntPtr Address)
-        //{
-        //    return ReadProcess<T>(Address);
-        //}
-
         #endregion Read
 
         #region Write
+
+        public void WriteNormal(IntPtr Address, Byte[] ObjValue)
+        {
+            WriteProcessMemory(GameProcess.Handle, Address, ObjValue, ObjValue.Length, IntPtr.Zero);
+        }
 
         // I might change this
         public void WriteProcess<T>(IntPtr Address, T ObjValue)
@@ -89,11 +93,6 @@ namespace Base2Me.Utils.Managers
             Marshal.Copy(BufferPtr, ByteObject, 0, Marshal.SizeOf<T>());
             Marshal.FreeHGlobal(BufferPtr);
             WriteProcessMemory(GameProcess.Handle, Address, ByteObject, ByteObject.Length, IntPtr.Zero);
-        }
-
-        public void WriteNormal(IntPtr Address, Byte[] ObjValue)
-        {
-            WriteProcessMemory(GameProcess.Handle, Address, ObjValue, ObjValue.Length, IntPtr.Zero);
         }
 
         #endregion Write

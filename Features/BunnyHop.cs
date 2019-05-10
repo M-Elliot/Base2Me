@@ -1,20 +1,15 @@
 ﻿using Base2Me.Utils;
 using Base2Me.Utils.CSGO.Enums;
+using Base2Me.Utils.Structures;
 
 using System;
 using System.Threading;
 
 namespace Base2Me.Features
 {
-    public class BunnyHop
+    public class BunnyHop : Feature
     {
-        public BunnyHop()
-        {
-            Thread bThread = new Thread(new ThreadStart(Main));
-            bThread.Start();
-        }
-
-        public void Main()
+        public override void Main()
         {
             //temporary until create Entity Structs;
             do

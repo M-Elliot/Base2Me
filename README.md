@@ -1,38 +1,25 @@
-<p>
-	It&#39;s always good to give back to the community with updates and features, but, sometimes it&#39;s nicer to provide others the means to learn and discover programming skills, and passions.
-</p>
+# Base2Me
+## The Open Source External C# CS:GO Base
 
-<p>
-	Simple C# Base which will gradually be developed and commented to develop allow people to understand the code as well as copy and paste it.
-</p>
+A Managed CS:GO Base, designed to revise C# and provide an alternative learning platform to begineer programmers in the community.
 
-<p>
-	<strong>Specifications:</strong>
-</p>
+## Requirements
 
-<ul>
-	<li>
-		C# .NetCore 2.2.0 (Linux support in the future?????</span>)
-	</li>
-	<li>
-		Visual Studio
-	</li>
-</ul>
+* [.NET Core 2.2 or Above](https://dotnet.microsoft.com/download/visual-studio-sdks?utm_source=getdotnetsdk&utm_medium=referral "GetDotNetSDK")
 
-<p>
-	<strong>Completed:</strong>
-</p>
+* Visual Studio 2017 or Above ([If you have issues](https://github.com/dotnet/sdk/issues/3124))
 
-<p>
-	<strong>To Do:</strong>
-</p>
+## How To Use
+1. Download the [repository](https://github.com/M-Elliot/Base2Me/archive/master.zip)
+2. Extract the `.zip` to a location of your choice
+3. Open `Base2Me.csproj` inside the `Base2Me` folder
+4. Tweak or Compile! (Publish for a .exe)
+5. Left/Right arrow key to change setting values
+5. Up/Down arrow key to change setting option
+6. Escape to apply settings and begin client
+7. Profit?
+## Example
+![BunnyHop BareBones](https://raw.githubusercontent.com/M-Elliot/Base2Me/master/Screenshots/devenv_EN1Hn5kXYf.png)
 
-<ul>
-	<li>
-		Comments
-	</li>
-</ul>
-
-<p>
-	Enjoy.
-</p>
+## License
+[GPL-3.0](https://github.com/M-Elliot/Base2Me/blob/master/LICENSE)

@@ -6,8 +6,8 @@ namespace Base2Me.Utils
     {
         #region Features
 
-        public bool BunnyHopEnabled;// { get; set; }
-        public ConsoleKey BunnyHopKey;// { get; set; }
+        public bool BunnyHopEnabled;
+        public ConsoleKey BunnyHopKey;
 
         #endregion Features
     }

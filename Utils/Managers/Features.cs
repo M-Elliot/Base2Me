@@ -3,15 +3,15 @@
     //Might disregard this class
     internal class Features
     {
-        private void StartThread()
-        {
-        }
-
         private void CheckThread()
         {
         }
 
         private void RestartThread()
+        {
+        }
+
+        private void StartThread()
         {
         }
     }

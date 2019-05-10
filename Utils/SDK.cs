@@ -6,20 +6,18 @@ namespace Base2Me.Utils
 {
     public static class SDK
     {
-        #region Imports
+        #region DLLImports
 
         [DllImport("User32.dll")]
         public static extern short GetAsyncKeyState(ConsoleKey Key);
 
-        #endregion Imports
-
-        public static MemoryManager Memory;// = new MemoryManager("csgo");
-        public static Settings Settings;// = new Settings();
-
-        //public static ConsoleMenu ConsoleMenu;
-        public static Offsets Offsets;// = new Offsets();
+        #endregion DLLImports
 
         //Temporary until we create the Entity Structs
         public static IntPtr LocalPlayer;
+
+        public static MemoryManager Memory;
+        public static Offsets Offsets = new Offsets();
+        public static Settings Settings = new Settings();
     }
 }

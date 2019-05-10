@@ -9,20 +9,20 @@ namespace Base2Me
     public class Program
     {
         public BunnyHop BunnyHop;
+        public ConsoleMenu ConsoleMenu;
 
+        //Our Main Method
         private static void Main(string[] args)
         {
-            new Program().InitialiseThreads();
+            new Program().InitialiseClient();
             //Hang until input, threads remain active.
             Console.ReadLine();
         }
 
-        private void InitialiseThreads()
+        private void InitialiseClient()
         {
-            SDK.Settings = new Settings();
-            var ConMenu = new ConsoleMenu();
-
-            SDK.Offsets = new Offsets();
+            //Initialise console, loops here until settings escaped
+            ConsoleMenu = new ConsoleMenu();
             SDK.Memory = new MemoryManager("csgo");
             BunnyHop = new BunnyHop();
         }
