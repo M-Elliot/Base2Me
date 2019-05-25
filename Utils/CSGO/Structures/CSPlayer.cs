@@ -1,6 +1,15 @@
 ﻿namespace Base2Me.Utils.CSGO.Structures
 {
-    internal class CSPlayer
+    public class CSPlayer : BaseEntity
     {
+        public int SurvivalTeam
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+
     }
 }
